@@ -2,8 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main] # Runs automatically whenever you push code to main
-  workflow_dispatch: # Allows you to manually trigger a build from GitHub
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -16,6 +16,13 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+
+      # ADD THIS STEP BELOW TO UPDATE NODE.JS
+      - name: Setup Node.js v22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm" # Optional: Speeds up subsequent workflow runs
 
       - name: Install, build, and upload your site
         uses: withastro/action@v3
