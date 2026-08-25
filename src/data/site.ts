@@ -5,20 +5,20 @@ const unsplash = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const site = {
-  name: 'Aikya Interiors',
+  name: 'RT Interior Designer',
   tagline: 'Timeless interiors, thoughtfully crafted',
   city: 'Kolkata',
-  phone: '+91 98300 12345',
-  phoneHref: 'tel:+919830012345',
-  whatsapp: 'https://wa.me/919830012345',
-  email: 'studio@aikyainteriors.in',
-  address: '42B Hindustan Park, Gariahat Road, Kolkata 700029',
+  phone: '+91 95472 65386',
+  phoneHref: 'tel:+919547265386',
+  whatsapp: 'https://wa.me/919547265386',
+  email: 'studio@rtinteriordesigner.in',
+  address: 'Santoshpur Station Connector, Rampur, Pally, Kolkata, Maheshtala, West Bengal 700142',
   hours: 'Mon - Sat, 10:00 AM - 7:00 PM',
   formspreeEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
   social: {
-    instagram: 'https://instagram.com/aikyainteriors',
-    facebook: 'https://facebook.com/aikyainteriors',
-    linkedin: 'https://linkedin.com/company/aikyainteriors',
+    instagram: 'https://instagram.com/rtinteriordesigner',
+    facebook: 'https://facebook.com/rtinteriordesigner',
+    linkedin: 'https://linkedin.com/company/rtinteriordesigner',
   },
 };
 
@@ -67,7 +67,7 @@ export const beforeAfterImages = {
 };
 
 export const testimonials = [
-  { quote: 'Aikya turned our 3BHK into a home that feels like us. The 3D previews matched the final result almost exactly.', name: 'Priyanka & Rohit Sharma', detail: 'Apartment renovation, Salt Lake' },
+  { quote: 'RT Interior Designer turned our 3BHK into a home that feels like us. The 3D previews matched the final result almost exactly.', name: 'Priyanka & Rohit Sharma', detail: 'Apartment renovation, Salt Lake' },
   { quote: 'Transparent pricing and weekly site updates. Managing a Kolkata renovation from abroad felt effortless.', name: 'Arindam Chatterjee', detail: 'NRI turnkey project, Ballygunge' },
   { quote: 'Our cafe footfall doubled after the redesign. Customers keep photographing the interiors - best marketing we never paid for.', name: 'Sneha Agarwal', detail: 'Cafe interior, Park Street' },
   { quote: 'They finished two days ahead of schedule, and the handover snag list had exactly three items. Remarkable.', name: 'Debasis Sen', detail: 'Modular kitchen, Behala' },

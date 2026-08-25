@@ -1,4 +1,4 @@
-# Aikya Interiors - Lead Generation Website
+# RT Interior Designer - Lead Generation Website
 
 A conversion-focused marketing site for a Kolkata interior design studio, built with Astro and Tailwind CSS v4.
 
@@ -58,3 +58,4 @@ Change these once and the entire site re-themes through utilities like bg-primar
 3. Imagery: swap the Unsplash photo IDs in site.ts for real project photography when available.
 4. Deploy: npm run build outputs a fully static dist/ folder - host it on Netlify, Vercel, Cloudflare Pages or GitHub Pages with no server required.
 5. SEO: page title and meta description are passed as props to BaseLayout from src/pages/index.astro.
+
