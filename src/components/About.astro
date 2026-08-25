@@ -1,0 +1,54 @@
+---
+import Icon from './Icon.astro';
+import { site, aboutImages } from '../data/site';
+
+const principles = [
+  'Client-first design process',
+  'Transparent, itemised pricing',
+  'On-site supervision at every stage',
+  '5-year workmanship warranty',
+];
+---
+
+<section id='about' class='bg-white py-24'>
+  <div class='mx-auto grid max-w-7xl items-center gap-20 px-6 lg:grid-cols-2 lg:gap-16'>
+    <!-- Image collage -->
+    <div class='reveal relative pb-10 pr-4'>
+      <img src={aboutImages.main} alt='Moody, elegant interior styled by Aikya Interiors' class='aspect-[4/5] w-full rounded-3xl object-cover shadow-2xl' loading='lazy' />
+      <img src={aboutImages.inset} alt='Interior detail' class='absolute -bottom-2 right-0 hidden aspect-square w-52 rounded-2xl border-8 border-white object-cover shadow-xl sm:block' loading='lazy' />
+      <div class='absolute -top-6 left-0 rounded-2xl bg-primary px-6 py-4 text-white shadow-xl sm:-left-4'>
+        <p class='font-display text-3xl'>12+</p>
+        <p class='text-[11px] font-bold uppercase tracking-widest'>Years in Kolkata</p>
+      </div>
+    </div>
+
+    <!-- Copy -->
+    <div class='reveal' style='transition-delay: 0.15s'>
+      <p class='mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-primary'>
+        <span class='h-px w-10 bg-primary'></span>
+        About Us
+      </p>
+      <h2 class='font-display text-3xl leading-snug text-neutral-900 md:text-4xl'>
+        Design philosophy rooted in Bengali heritage, built for modern life.
+      </h2>
+      <p class='mt-6 leading-relaxed'>
+        Founded in 2013 by principal designer Ananya Sen, {site.name} has shaped homes, cafes and offices across the city. We believe great design is quiet - it works hard, ages gracefully and lets the people inside it take centre stage.
+      </p>
+      <p class='mt-4 leading-relaxed'>
+        Every project begins with listening: how you celebrate, where you unwind, what you want to come home to. The result is an interior that feels inevitable - as if it could never have been any other way.
+      </p>
+      <ul class='mt-8 grid gap-3 sm:grid-cols-2'>
+        {principles.map((principle) => (
+          <li class='flex items-center gap-3 text-sm font-bold text-neutral-800'>
+            <span class='flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary'>
+              <Icon name='check' class='h-4 w-4' />
+            </span>
+            {principle}
+          </li>
+        ))}
+      </ul>
+      <p class='mt-10 font-display text-2xl italic text-neutral-900'>Ananya Sen</p>
+      <p class='text-xs font-bold uppercase tracking-widest text-neutral-400'>Principal Designer and Founder</p>
+    </div>
+  </div>
+</section>

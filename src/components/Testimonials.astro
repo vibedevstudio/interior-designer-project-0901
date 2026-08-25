@@ -1,0 +1,36 @@
+---
+import Icon from './Icon.astro';
+import { testimonials } from '../data/site';
+---
+
+<section id='testimonials' class='bg-white py-24'>
+  <div class='mx-auto max-w-7xl px-6'>
+    <div class='reveal mx-auto mb-16 max-w-2xl text-center'>
+      <p class='mb-4 text-xs font-bold uppercase tracking-[0.3em] text-primary'>Testimonials</p>
+      <h2 class='font-display text-3xl text-neutral-900 md:text-4xl'>Word of mouth, our favourite metric</h2>
+    </div>
+
+    <div class='grid gap-8 md:grid-cols-2 lg:grid-cols-4'>
+      {testimonials.map((t, i) => (
+        <figure
+          class='reveal flex flex-col rounded-3xl border border-neutral-100 bg-neutral-50 p-7 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-lg'
+          style={`transition-delay: ${i * 0.08}s`}
+        >
+          <Icon name='quote' class='h-8 w-8 text-primary/30' />
+          <div class='mt-4 flex gap-1 text-amber-400'>
+            {[0, 1, 2, 3, 4].map(() => (
+              <Icon name='star' class='h-4 w-4' />
+            ))}
+          </div>
+          <blockquote class='mt-4 flex-1 text-sm leading-relaxed text-neutral-600'>
+            &ldquo;{t.quote}&rdquo;
+          </blockquote>
+          <figcaption class='mt-6 border-t border-neutral-200 pt-4'>
+            <p class='font-bold text-neutral-900'>{t.name}</p>
+            <p class='text-xs uppercase tracking-wide text-neutral-400'>{t.detail}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

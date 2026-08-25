@@ -1,0 +1,102 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+
+const inputClass = 'w-full rounded-xl border border-neutral-300 bg-neutral-50 px-4 py-3 text-sm text-neutral-800 placeholder:text-neutral-400 transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/25';
+const labelClass = 'mb-1.5 block text-xs font-bold uppercase tracking-widest text-neutral-500';
+---
+
+<section id='contact' class='bg-gradient-to-br from-primary to-primary-dark py-24'>
+  <div class='mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-5'>
+    <!-- Reassurance column -->
+    <div class='reveal text-white lg:col-span-2'>
+      <p class='mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-secondary'>
+        <span class='h-px w-10 bg-secondary'></span>
+        Get Started
+      </p>
+      <h2 class='font-display text-3xl leading-snug md:text-4xl'>Tell us about your space</h2>
+      <p class='mt-5 leading-relaxed text-white/85'>
+        Share a few details and we will call you back within one working day with next steps and a free consultation slot. No spam, no obligation.
+      </p>
+
+      <ul class='mt-10 space-y-5 text-sm'>
+        <li class='flex items-start gap-4'>
+          <span class='rounded-xl bg-white/10 p-2.5'><Icon name='map-pin' class='h-5 w-5' /></span>
+          <span>{site.address}</span>
+        </li>
+        <li class='flex items-start gap-4'>
+          <span class='rounded-xl bg-white/10 p-2.5'><Icon name='phone' class='h-5 w-5' /></span>
+          <a href={site.phoneHref} class='hover:text-secondary'>{site.phone}</a>
+        </li>
+        <li class='flex items-start gap-4'>
+          <span class='rounded-xl bg-white/10 p-2.5'><Icon name='clock' class='h-5 w-5' /></span>
+          <span>{site.hours}</span>
+        </li>
+      </ul>
+
+      <a href={site.whatsapp} target='_blank' rel='noopener noreferrer' class='mt-10 inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-bold tracking-wide transition hover:bg-white hover:text-primary-dark'>
+        <Icon name='message-circle' class='h-4 w-4' />
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <!-- Lead capture form -->
+    <form action={site.formspreeEndpoint} method='POST' class='reveal rounded-3xl bg-white p-8 shadow-2xl md:p-10 lg:col-span-3' style='transition-delay: 0.15s'>
+      <div class='grid gap-5 sm:grid-cols-2'>
+        <div>
+          <label for='name' class={labelClass}>Full Name *</label>
+          <input id='name' name='name' type='text' required placeholder='e.g. Riya Mukherjee' class={inputClass} autocomplete='name' />
+        </div>
+        <div>
+          <label for='phone' class={labelClass}>Phone *</label>
+          <input id='phone' name='phone' type='tel' required placeholder='Your phone number' pattern='[+0-9 ()-]{8,16}' class={inputClass} autocomplete='tel' />
+        </div>
+        <div class='sm:col-span-2'>
+          <label for='email' class={labelClass}>Email</label>
+          <input id='email' name='email' type='email' placeholder='you@example.com' class={inputClass} autocomplete='email' />
+        </div>
+        <div>
+          <label for='project-type' class={labelClass}>Project Type *</label>
+          <select id='project-type' name='project_type' required class={inputClass}>
+            <option value='' disabled selected>Select one...</option>
+            <option>Full Home Interiors</option>
+            <option>Single Room or Renovation</option>
+            <option>Modular Kitchen</option>
+            <option>Commercial Space</option>
+            <option>Design Consultation Only</option>
+          </select>
+        </div>
+        <div>
+          <label for='budget' class={labelClass}>Budget Range</label>
+          <select id='budget' name='budget' class={inputClass}>
+            <option value='' selected>Prefer not to say</option>
+            <option>Under Rs. 5 Lakh</option>
+            <option>Rs. 5 - 15 Lakh</option>
+            <option>Rs. 15 - 30 Lakh</option>
+            <option>Above Rs. 30 Lakh</option>
+          </select>
+        </div>
+        <div class='sm:col-span-2'>
+          <label for='message' class={labelClass}>Tell Us About Your Project</label>
+          <textarea id='message' name='message' rows='4' placeholder='Property type, location, timeline...' class={inputClass}></textarea>
+        </div>
+      </div>
+
+      <!-- Honeypot: invisible to humans, irresistible to bots -->
+      <input type='text' name='_gotcha' tabindex='-1' autocomplete='off' class='hidden' aria-hidden='true' />
+
+      <label class='mt-6 flex items-start gap-3 text-xs text-neutral-500'>
+        <input type='checkbox' name='consent' required class='mt-0.5 h-4 w-4 accent-[#008080]' />
+        I agree to be contacted about my enquiry. *
+      </label>
+
+      <button type='submit' class='mt-8 w-full rounded-full bg-primary py-4 text-sm font-bold uppercase tracking-widest text-white shadow-lg transition hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary/30'>
+        Request My Free Consultation
+      </button>
+      <p class='mt-4 flex items-center justify-center gap-2 text-xs text-neutral-400'>
+        <Icon name='check' class='h-3.5 w-3.5 text-primary' />
+        Free 30-minute consultation. Response within one working day.
+      </p>
+    </form>
+  </div>
+</section>

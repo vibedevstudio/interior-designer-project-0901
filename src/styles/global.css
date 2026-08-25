@@ -1,0 +1,61 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #008080;
+  --color-primary-dark: #005757;
+  --color-primary-light: #17a398;
+  --color-secondary: #f5f5dc;
+  --color-secondary-dark: #e9e5c8;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lato', ui-sans-serif, system-ui, sans-serif;
+
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  --animate-fade-in: fade-in 1.2s ease-out both;
+  --animate-slow-zoom: slow-zoom 16s ease-out forwards;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slow-zoom {
+    from { transform: scale(1.1); }
+    to { transform: scale(1); }
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body { font-family: var(--font-body); }
+
+/* Anchor offset below the fixed navbar */
+section[id] { scroll-margin-top: 4.5rem; }
+
+::selection { background-color: #008080; color: #f5f5dc; }
+
+/* ---- Scroll-reveal primitives ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+
+/* ---- Navbar states (toggled by script in Navbar.astro) ---- */
+.nav-solid {
+  background-color: rgb(255 255 255 / 0.95);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 0.08);
+  backdrop-filter: blur(8px);
+}
+.nav-solid #logo,
+.nav-solid .nav-link,
+.nav-solid #menu-btn { color: #111827; }
+.nav-solid #logo span { color: #008080; }
+
+/* Hide scrollbars on carousel tracks */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

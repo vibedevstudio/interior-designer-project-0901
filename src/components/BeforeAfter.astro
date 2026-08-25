@@ -1,0 +1,45 @@
+---
+import { beforeAfterImages } from '../data/site';
+---
+
+<section id='transformations' class='bg-secondary/60 py-24'>
+  <div class='mx-auto max-w-4xl px-6'>
+    <div class='reveal mx-auto mb-12 max-w-2xl text-center'>
+      <p class='mb-4 text-xs font-bold uppercase tracking-[0.3em] text-primary'>Before and After</p>
+      <h2 class='font-display text-3xl text-neutral-900 md:text-4xl'>Drag to witness the transformation</h2>
+      <p class='mt-5 text-neutral-600'>A dated Behala kitchen, reimagined in eight weeks.</p>
+    </div>
+
+    <div id='ba-wrap' class='reveal relative aspect-video select-none overflow-hidden rounded-3xl shadow-2xl' style='--pos: 50'>
+      <!-- AFTER (base layer) -->
+      <img src={beforeAfterImages.after} alt='Kitchen after renovation by Aikya Interiors' class='absolute inset-0 h-full w-full object-cover' loading='lazy' />
+      <!-- BEFORE (clipped layer) -->
+      <div class='absolute inset-0' style='clip-path: inset(0 calc(100% - var(--pos) * 1%) 0 0)'>
+        <img src={beforeAfterImages.before} alt='Kitchen before renovation' class='absolute inset-0 h-full w-full object-cover' loading='lazy' />
+      </div>
+
+      <!-- Divider handle -->
+      <div class='pointer-events-none absolute inset-y-0' style='left: calc(var(--pos) * 1%)'>
+        <div class='absolute inset-y-0 -left-px w-0.5 bg-white'></div>
+        <div class='absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-white bg-primary p-3 text-white shadow-xl'>
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='h-5 w-5' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m9 7-5 5 5 5M15 7l5 5-5 5'/></svg>
+        </div>
+      </div>
+
+      <span class='pointer-events-none absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white'>Before</span>
+      <span class='pointer-events-none absolute right-4 top-4 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white'>After</span>
+
+      <!-- Invisible full-area drag control -->
+      <input id='ba-range' type='range' min='0' max='100' value='50' aria-label='Before and after comparison slider' class='absolute inset-0 h-full w-full cursor-ew-resize appearance-none bg-transparent opacity-0' />
+    </div>
+  </div>
+</section>
+
+<script>
+  const wrap = document.getElementById('ba-wrap');
+  const range = document.getElementById('ba-range') as HTMLInputElement | null;
+
+  range?.addEventListener('input', () => {
+    wrap?.style.setProperty('--pos', range.value);
+  });
+</script>

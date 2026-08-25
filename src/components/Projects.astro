@@ -1,0 +1,54 @@
+---
+import Icon from './Icon.astro';
+import { projects } from '../data/site';
+---
+
+<section id='projects' class='overflow-hidden bg-white py-24'>
+  <div class='mx-auto max-w-7xl px-6'>
+    <div class='reveal mb-12 flex flex-wrap items-end justify-between gap-6'>
+      <div class='max-w-xl'>
+        <p class='mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-primary'>
+          <span class='h-px w-10 bg-primary'></span>
+          Our Projects
+        </p>
+        <h2 class='font-display text-3xl text-neutral-900 md:text-4xl'>Recent work across the city</h2>
+      </div>
+      <div class='flex gap-3'>
+        <button id='proj-prev' aria-label='Previous project' class='flex h-12 w-12 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition hover:border-primary hover:bg-primary hover:text-white'>
+          <Icon name='arrow-left' class='h-5 w-5' />
+        </button>
+        <button id='proj-next' aria-label='Next project' class='flex h-12 w-12 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition hover:border-primary hover:bg-primary hover:text-white'>
+          <Icon name='arrow-right' class='h-5 w-5' />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class='reveal'>
+    <div id='project-track' class='no-scrollbar flex snap-x snap-mandatory scroll-smooth gap-6 overflow-x-auto px-6 pb-4'>
+      {projects.map((project) => (
+        <figure class='group relative w-[82vw] shrink-0 snap-center overflow-hidden rounded-3xl shadow-lg sm:w-[54vw] lg:w-[38vw]'>
+          <img src={project.image} alt={`${project.title}, ${project.location}`} class='aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-105' loading='lazy' />
+          <figcaption class='absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 pt-16 text-white'>
+            <span class='inline-block rounded-full bg-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-dark'>{project.category}</span>
+            <h3 class='mt-3 font-display text-xl'>{project.title}</h3>
+            <p class='text-sm text-white/80'>{project.location}, Kolkata</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('project-track');
+  const prev = document.getElementById('proj-prev');
+  const next = document.getElementById('proj-next');
+
+  const stepSize = () => {
+    const slide = track?.querySelector('figure');
+    return slide ? slide.clientWidth + 24 : 320;
+  };
+  prev?.addEventListener('click', () => track?.scrollBy({ left: -stepSize(), behavior: 'smooth' }));
+  next?.addEventListener('click', () => track?.scrollBy({ left: stepSize(), behavior: 'smooth' }));
+</script>

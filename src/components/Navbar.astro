@@ -1,0 +1,80 @@
+---
+import Icon from './Icon.astro';
+import { navLinks } from '../data/site';
+---
+
+<header id='site-nav' class='fixed inset-x-0 top-0 z-50 transition-all duration-300'>
+  <nav class='mx-auto flex max-w-7xl items-center justify-between px-6 py-4'>
+    <a id='logo' href='#home' class='font-display text-2xl font-semibold tracking-wide text-white'>
+      Aikya<span class='text-secondary'>.</span>
+    </a>
+    <ul class='hidden items-center gap-8 lg:flex'>
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class='nav-link text-sm font-bold uppercase tracking-widest text-white/85 transition-colors hover:text-secondary'>
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class='flex items-center gap-3'>
+      <a href='#contact' class='hidden rounded-full bg-primary px-6 py-2.5 text-sm font-bold tracking-wide text-white shadow-lg transition hover:bg-primary-light sm:inline-block'>
+        Free Consultation
+      </a>
+      <button id='menu-btn' class='rounded-lg p-2 text-white lg:hidden' aria-label='Toggle menu' aria-expanded='false'>
+        <span id='icon-open'><Icon name='menu' class='h-7 w-7' /></span>
+        <span id='icon-close' class='hidden'><Icon name='x' class='h-7 w-7' /></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id='mobile-menu' class='hidden border-t border-white/15 bg-primary-dark/95 backdrop-blur lg:hidden'>
+    <ul class='space-y-1 px-6 py-6'>
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class='mobile-link block rounded-lg px-3 py-2.5 font-bold uppercase tracking-widest text-white/90 hover:bg-white/10'>
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class='pt-3'>
+        <a href='#contact' class='mobile-link block rounded-full bg-secondary px-5 py-3 text-center text-sm font-bold tracking-wide text-primary-dark'>
+          Book a Free Consultation
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-nav');
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  // Solid navbar once the user scrolls past the hero edge.
+  const onScroll = () => {
+    header?.classList.toggle('nav-solid', window.scrollY > 40);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile drawer toggle.
+  btn?.addEventListener('click', () => {
+    const willOpen = menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!willOpen));
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+
+  // Close the drawer whenever a link inside it is clicked.
+  menu?.querySelectorAll('.mobile-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
+  });
+</script>
